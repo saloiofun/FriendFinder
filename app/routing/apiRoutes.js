@@ -6,8 +6,12 @@ module.exports = function(app) {
     res.json(friends);
   });
 
-  app.post('/api/friends', function(req, res) {
-    res.json(friends);
+  app.post("/api/friends", function(req, res) {
+    var friend = req.body;
+
+    friends.push(friend);
+    console.log(friend);
+    res.json(friend);
   });
 
 };

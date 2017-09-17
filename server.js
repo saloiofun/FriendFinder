@@ -5,15 +5,17 @@ var path = require('path');
 var app = express();
 var PORT = 3000;
 
-require('./app/routing/htmlRoutes')(app);
-require('./app/routing/apiRoutes')(app);
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
-// parse application/json
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({
+  type: "application/vnd.api+json"
+}));
+
+require('./app/routing/apiRoutes')(app);
+require('./app/routing/htmlRoutes')(app);
 
 app.listen(PORT, function() {
   console.log('Listening to port:', PORT);
