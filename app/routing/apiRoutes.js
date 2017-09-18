@@ -7,11 +7,32 @@ module.exports = function(app) {
   });
 
   app.post("/api/friends", function(req, res) {
-    var friend = req.body;
+    var user = req.body;
+    var matches = [];
 
-    friends.push(friend);
-    console.log(friend);
-    res.json(friend);
+    var bestMatch = friends[0];
+    var totalDifference = calculateTotalDifference(user.scores, friends[0].scores);
+    var bestScore = totalDifference;
+
+    for (var i = 1; i < friends.length; i++) {
+      totalDifference = calculateTotalDifference(user.scores, friends[i].scores);
+      if (totalDifference < bestScore) {
+        bestMatch = friends[i];
+        bestScore = totalDifference;
+      }
+    }
+
+    friends.push(user);
+    res.json(bestMatch);
   });
+
+  function calculateTotalDifference(array1, array2) {
+    var total = array1.map(function(num, idx) {
+      return Math.abs(num - array2[idx]);
+    });
+    return total.reduce(function(sum, value) {
+      return sum + value;
+    });
+  }
 
 };
