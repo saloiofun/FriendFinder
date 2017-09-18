@@ -16,11 +16,11 @@
       <h3>About You</h3>
       <div class="form-group">
         <label for="name">Name (Required)</label>
-        <input type="name" class="form-control" id="name" placeholder="Enter name">
+        <input type="name" class="form-control" id="name" placeholder="Enter name" required>
       </div>
       <div class="form-group">
         <label for="photo">Link to Photo Image (Required)</label>
-        <input type="text" class="form-control" id="photo" placeholder="Photo URL">
+        <input type="text" class="form-control" id="photo" placeholder="Photo URL" required>
       </div>
       <hr>
       <h3>Question 1</h3>
@@ -140,10 +140,25 @@
       <p><a href="/api/friends">API Friends List</a> | <a href="#">GitHub Repo</a>
       </footer>
     </div>
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+    <!-- Modal -->
+    <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="bestMatch" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bestMatch">Best Match</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   </body>
@@ -153,7 +168,7 @@
   <script type="text/javascript">
   $("#submit").on("click", function(event) {
     event.preventDefault();
-    var arr = $('select.scores').map(function(){
+    var arr = $('select.scores').map(function() {
       return this.value
     }).get();
     var survey = {
@@ -161,17 +176,19 @@
       photo: $("#photo").val().trim(),
       scores: arr
     };
-    console.log(survey);
 
-    $.post("/api/friends", survey, function(data) {
-      // If a table is available... tell user they are booked.
-      if (data) {
-        alert("true");
-      }
-      // If a table is available... tell user they on the waiting list.
-      else {
-        alert("false");
-      }
-    });
+    if (survey.name === "" || survey.photo === "") {
+      alert("Please fill out all fields before submitting!");
+    } else {
+      $.post("/api/friends", survey, function(data) {
+        var modalBody = $(".modal-body");
+        modalBody.empty();
+        var friend = $('<h1>').text(data.name);
+        var img = $('<img src="' + data.photo + '" alt="' + data.name + '">');
+        modalBody.append(friend);
+        modalBody.append(img);
+        $('#matchModal').modal('toggle')
+      });
+    }
   });
   </script>

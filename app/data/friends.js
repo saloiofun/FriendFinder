@@ -1,7 +1,7 @@
 var friends = [{
-    name: "Ahmed",
-    photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
-    scores: [
+    "name": "Ahmed",
+    "photo": "https://api.adorable.io/avatars/285/ahmed@adorable.png",
+    "scores": [
       5,
       1,
       4,
@@ -15,35 +15,79 @@ var friends = [{
     ]
   },
   {
-    name: "Test1",
-    photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
-    scores: [
-      1,
-      1,
-      1,
-      1,
-      5,
-      1,
-      2,
-      5,
+    "name": "Jacob Deming",
+    "photo": "https://api.adorable.io/avatars/285/jacobDeming@adorable.png",
+    "scores": [
       4,
-      1
+      2,
+      5,
+      1,
+      3,
+      2,
+      2,
+      1,
+      3,
+      "2"
     ]
-  },
-  {
-    name: "Test2",
-    photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
-    scores: [
+  }, {
+    "name": "Jeremiah Scanlon",
+    "photo": "https://api.adorable.io/avatars/285/jeremuahScanlon@adorable.png",
+    "scores": [
+      5,
       2,
       2,
       2,
+      4,
+      1,
+      3,
+      2,
+      5,
+      5
+    ]
+  }, {
+    "name": "Louis T. Delia",
+    "photo": "https://api.adorable.io/avatars/285/louisTDelia@adorable.png",
+    "scores": [
+      3,
+      3,
+      4,
       2,
       2,
+      1,
+      3,
       2,
       2,
+      3
+    ]
+  }, {
+    "name": "Lou Ritter",
+    "photo": "https://api.adorable.io/avatars/285/louRitter@adorable.png",
+    "scores": [
+      4,
+      3,
+      4,
+      1,
+      5,
+      2,
+      5,
+      3,
+      1,
+      4
+    ]
+  }, {
+    "name": "Jordan Biason",
+    "photo": "https://api.adorable.io/avatars/285/jordanBiason@adorable.png",
+    "scores": [
+      4,
+      4,
+      2,
+      3,
       2,
       2,
-      1
+      3,
+      2,
+      4,
+      5
     ]
   }
 ];
