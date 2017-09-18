@@ -11,11 +11,10 @@ module.exports = function(app) {
     var matches = [];
 
     var bestMatch = friends[0];
-    var totalDifference = calculateTotalDifference(user.scores, friends[0].scores);
-    var bestScore = totalDifference;
+    var bestScore = calculateTotalDifference(user.scores, friends[0].scores);
 
     for (var i = 1; i < friends.length; i++) {
-      totalDifference = calculateTotalDifference(user.scores, friends[i].scores);
+      var totalDifference = calculateTotalDifference(user.scores, friends[i].scores);
       if (totalDifference < bestScore) {
         bestMatch = friends[i];
         bestScore = totalDifference;
